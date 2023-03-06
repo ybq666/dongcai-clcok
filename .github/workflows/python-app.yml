@@ -36,13 +36,14 @@ jobs:
     - name: clock
       run: 
         python clock-2023-2-15.py
-    - name: Commit
-      run: |
-        git config --global user.email 912828696@qq.com
-        git config --global user.name yao
-        git add .
-        git commit -m"action:`date`"
-        git pull --rebase
-    - name: Push changes
-      uses: ad-m/github-push-action@master
+#  不知道为什么报错， 先暂时不用吧
+#     - name: Commit
+#       run: |
+#         git config --global user.email 912828696@qq.com
+#         git config --global user.name yao
+#         git add .
+#         git commit -m"action:`date`"
+#         git pull --rebase
+#     - name: Push changes
+#       uses: ad-m/github-push-action@master
 
