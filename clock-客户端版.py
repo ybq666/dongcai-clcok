@@ -4,17 +4,27 @@ import requests
 import random
 import re
 import time
-
+from datetime import datetime, timedelta
 # print("作者：ybq")
 url_login = "http://smse.fun-master.cn/report/login/dologin"
 url = "http://smse.fun-master.cn/report/index/doreporthd"
 ua = {
 	'user-agent': "Mozilla/5.0 (Linux; Android 12; M2012K10C Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/86.0.4240.99 XWEB/4313 MMWEBSDK/20220604 Mobile Safari/537.36 MMWEBID/9863 MicroMessenger/8.0.24.2180(0x28001887) WeChat/arm64 Weixin NetType/WIFI Language/zh_CN ABI/arm64"
 }
-# 获取打卡时的时间
-def get_time():
-    return time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
 
+
+# 获取打卡时的时间
+
+def get_time():
+		#这个是在本地运行的
+    #return time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
+	
+	#github action 服务器那边的时间要比本地北京时间早八小时
+	time_string = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
+	time_object = datetime.strptime(time_string, '%Y-%m-%d %H:%M:%S')
+	time_object += timedelta(hours=8)
+	return time_object.strftime('%Y-%m-%d %H:%M:%S')
+	
 
 def login_clock_log(stu_no, password, current_province, current_city, current_area, current_address, at_school):
     # 登陆
@@ -49,12 +59,6 @@ with open('log.txt', 'a', encoding='utf-8') as f:
     # 每天执行程序开始先输出当天日期
     # 注意这里是写到日志文件不要写错了
     # f.write('-' * 90 + '\n' + '-' * 40 + get_time()[:10] + '-' * 40 + '\n' + '-' * 90 + '\n')
-
-	#这个是在本地运行的
-    #f.write('-' * 40 + get_time()[:10] + '-' * 40 + '\n')
-	#github action 服务器那边的时间要比本地北京时间早八小时
-	c = str((int(get_time()[:2]) + 8) % 24)
-	get_time() = a.replace(get_time()[:2], c, 1)
     f.write('-' * 40 + get_time()[:10] + '-' * 40 + '\n')
 with open("userdata.csv", 'r', encoding="utf-8") as f:  
     for line in f:
