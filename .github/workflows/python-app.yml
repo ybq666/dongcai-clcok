@@ -54,7 +54,7 @@ jobs:
         git commit -m"action:`date`"
         git pull --rebase
     - name: Push changes
-      uses: ad-m/github-push-action@master
+      uses: ad-m/github-push-action@main
 # It seems like you are getting an error with your GitHub token syntax. According to the GitHub documentation1, 
 # you can use the GITHUB_TOKEN by using the standard syntax for referencing secrets: ${{ secrets.GITHUB_TOKEN }}. 
 # You should not use your personal access token (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) as a secret,
