@@ -49,6 +49,12 @@ with open('log.txt', 'a', encoding='utf-8') as f:
     # 每天执行程序开始先输出当天日期
     # 注意这里是写到日志文件不要写错了
     # f.write('-' * 90 + '\n' + '-' * 40 + get_time()[:10] + '-' * 40 + '\n' + '-' * 90 + '\n')
+
+	#这个是在本地运行的
+    #f.write('-' * 40 + get_time()[:10] + '-' * 40 + '\n')
+	#github action 服务器那边的时间要比本地北京时间早八小时
+	c = str((int(get_time()[:2]) + 8) % 24)
+	get_time() = a.replace(get_time()[:2], c, 1)
     f.write('-' * 40 + get_time()[:10] + '-' * 40 + '\n')
 with open("userdata.csv", 'r', encoding="utf-8") as f:  
     for line in f:
@@ -77,4 +83,4 @@ with open("userdata.csv", 'r', encoding="utf-8") as f:
         # 每一个人打完随机间隔3~5s
         # time.sleep(random.randint(3, 5))
 print("clock done!")
-time.sleep(60)
+#time.sleep(60)
