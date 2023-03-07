@@ -53,7 +53,7 @@ jobs:
         git commit -m "action:`date`"
  #       git pull --rebase
     - name: Push changes
-      uses: ad-m/github-push-action@main
+      uses: ad-m/github-push-action@master
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
 # It seems like you are getting an error with your GitHub token syntax. According to the GitHub documentation1, 
