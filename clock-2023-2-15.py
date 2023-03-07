@@ -88,4 +88,6 @@ with open("userdata.csv", 'r', encoding="utf-8") as f:
         # 每一个人打完随机间隔3~5s
         # time.sleep(random.randint(3, 5))
 print("clock done!")
+
+#真尼玛看到这个sleep就来气 之前忘记注释掉了， 搞得每次测试都要等一万年，之前还以为是那边服务器到这里延迟太高了，真晦气呀
 #time.sleep(60)
