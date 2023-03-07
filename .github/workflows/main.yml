@@ -1,0 +1,61 @@
+# This workflow will install Python dependencies, run tests and lint with a single version of Python
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
+
+name: Python application
+
+on:
+  schedule:
+    - cron: "0 6 * * *"
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+       node-version: '16'
+    - uses: actions/setup-python@v2
+      with:
+        python-version: '3.9'
+
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install requests
+    - name: clock
+      run: 
+        python clock-2023-2-15.py
+#  不知道为什么报错， 先暂时不用吧
+#     - name: Commit
+#       run: |
+#         git config --global user.email 912828696@qq.com
+#         git config --global user.name yao
+#         git add .
+#         git commit -m"action:`date`"
+#         git pull --rebase
+#     - name: Push changes
+#       uses: ad-m/github-push-action@master
+    - name: Commit
+      run: |
+        git config --global user.email 912828696@qq.com
+        git config --global user.name yao
+        git add .
+        git commit -m "action:`date`"
+ #       git pull --rebase
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+# It seems like you are getting an error with your GitHub token syntax. According to the GitHub documentation1, 
+# you can use the GITHUB_TOKEN by using the standard syntax for referencing secrets: ${{ secrets.GITHUB_TOKEN }}. 
+# You should not use your personal access token (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) as a secret,
+# as it may expose your account to security risks. Instead, you can use the built-in GITHUB_TOKEN secret that GitHub automatically creates for you2. I hope this helps.
+#       with:
+#         github_token: ${{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.GITHUB_TOKEN}}
