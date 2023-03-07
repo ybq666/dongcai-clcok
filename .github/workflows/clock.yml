@@ -8,7 +8,7 @@ on:
     branches:
       - master
   schedule:
-    - cron: "0 6 * * *"
+    - cron: "0 22 * * *"
 
 permissions:
   contents: write
@@ -47,8 +47,8 @@ jobs:
 #       uses: ad-m/github-push-action@master
     - name: Commit
       run: |
-        git config --global user.email 912828696@qq.com
-        git config --global user.name yao
+        git config --global user.email "912828696@qq.com"
+        git config --global user.name "yao"
         git add .
         git commit -m "action:`date`"
  #       git pull --rebase
