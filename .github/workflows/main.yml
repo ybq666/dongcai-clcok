@@ -51,7 +51,7 @@ jobs:
         git config --global user.name "yao"
         git add .
         git commit -m "action:`date`"
- #       git pull --rebase
+        git pull --rebase
     - name: Push changes
       uses: ad-m/github-push-action@master
       with:
