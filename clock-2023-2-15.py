@@ -14,7 +14,14 @@ ua = {
 
 # 获取打卡时的时间
 def get_time():
-    return time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
+		#这个是在本地运行的
+    #return time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
+	
+	#github action 服务器那边的时间要比本地北京时间早八小时
+	time_string = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
+	time_object = datetime.strptime(time_string, '%Y-%m-%d %H:%M:%S')
+	time_object += timedelta(hours=8)
+	return time_object.strftime('%Y-%m-%d %H:%M:%S')
 
 
 def login_clock_log(stu_no, password, current_province, current_city, current_area, current_address, at_school):
@@ -80,4 +87,4 @@ with open("userdata.csv", 'r', encoding="utf-8") as f:
         # 每一个人打完随机间隔3~5s
         # time.sleep(random.randint(3, 5))
 print("clock done!")
-time.sleep(60)
+#time.sleep(60)
